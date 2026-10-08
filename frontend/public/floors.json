@@ -323,6 +323,73 @@
           "zone": "Insights Zone"
         }
       ]
+    },
+    {
+      "id": "L9",
+      "name": "Level 9",
+      "width": 1000,
+      "height": 600,
+      "zones": [
+        {
+          "id": "St John",
+          "x": 40,
+          "y": 60,
+          "w": 380,
+          "h": 250,
+          "color": "#2f6fed",
+          "type": "room",
+          "roomId": "st-john"
+        },
+        {
+          "id": "Lazarus",
+          "x": 440,
+          "y": 60,
+          "w": 260,
+          "h": 250,
+          "color": "#2f6fed",
+          "type": "room",
+          "roomId": "lazarus"
+        },
+        {
+          "id": "Seringat",
+          "x": 720,
+          "y": 60,
+          "w": 240,
+          "h": 250,
+          "color": "#2f6fed",
+          "type": "room",
+          "roomId": "seringat"
+        },
+        {
+          "id": "Kusu",
+          "x": 40,
+          "y": 350,
+          "w": 200,
+          "h": 210,
+          "color": "#2f6fed",
+          "type": "room",
+          "roomId": "kusu"
+        },
+        {
+          "id": "Reception",
+          "x": 260,
+          "y": 350,
+          "w": 300,
+          "h": 210,
+          "color": "#8a8f98",
+          "amenity": true
+        },
+        {
+          "id": "Pantry",
+          "x": 580,
+          "y": 350,
+          "w": 380,
+          "h": 210,
+          "color": "#8a8f98",
+          "amenity": true
+        }
+      ],
+      "desks": []
     }
   ]
 }

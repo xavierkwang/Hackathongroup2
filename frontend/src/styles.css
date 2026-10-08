@@ -252,3 +252,47 @@ textarea { width: 100%; font-family: ui-monospace, Menlo, monospace; font-size: 
 .dir-table a { text-decoration: none; }
 .nowrap { white-space: nowrap; }
 .center { text-align: center; }
+
+/* ---------- meeting rooms */
+.room-avatar { background: var(--surface-2); font-size: 20px; }
+.room-card.occupied { border-left-color: var(--bad); }
+.room-card.free { border-left-color: var(--ok); }
+.booking-list { list-style: none; margin: 10px 0 0; padding: 0; font-size: 13px; }
+.booking-list li { display: grid; grid-template-columns: 92px 1fr auto; gap: 8px; padding: 5px 8px; border-radius: 6px; }
+.booking-list li.now { background: var(--bad-bg); font-weight: 600; }
+.b-time { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.b-who { color: var(--ink-2); white-space: nowrap; }
+.room-label { height: 100%; display: flex; flex-direction: column; gap: 2px; font-family: var(--font); overflow: hidden; }
+.room-name { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--ink); }
+.room-meta { font-size: 13px; color: var(--ink-2); }
+.room-status { font-size: 14px; font-weight: 700; }
+.room-zone:hover rect { fill-opacity: .2; }
+
+.rooms-layout { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
+.rooms-layout .map-panel { position: static; }
+.tl-booking.short .tl-b-title, .tl-booking.short .tl-b-who { font-size: 10px; }
+.day-nav { display: flex; gap: 6px; }
+.timeline { margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.tl-row { display: grid; grid-template-columns: 120px 1fr; border-bottom: 1px solid var(--line); min-height: 64px; }
+.tl-row:last-child { border-bottom: 0; }
+.tl-row.selected { background: var(--surface-2); }
+.tl-hours { min-height: 28px; background: var(--surface-2); }
+.tl-room { display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 8px 12px; border: 0; border-right: 1px solid var(--line);
+  background: transparent; text-align: left; font: inherit; color: var(--ink); cursor: pointer; position: relative; }
+.tl-hours .tl-room { cursor: default; }
+.tl-room .dot { position: absolute; top: 10px; right: 10px; width: 9px; height: 9px; border-radius: 50%; }
+.dot.free { background: var(--ok); } .dot.occupied { background: var(--bad); }
+.tl-track { position: relative; margin: 0 12px; }
+.tl-hour { position: absolute; top: 6px; transform: translateX(-50%); font-size: 11px; color: var(--muted); white-space: nowrap; }
+.tl-grid { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.tl-booking { position: absolute; top: 8px; bottom: 8px; border: 0; border-radius: 6px; padding: 4px 6px; text-align: left; overflow: hidden;
+  background: #dbe6fd; color: #14213d; font: inherit; font-size: 11px; line-height: 1.25; cursor: pointer; display: flex; flex-direction: column;
+  border-left: 3px solid #2f6fed; }
+.tl-booking.past { opacity: .5; }
+.tl-booking.live { background: var(--bad-bg); border-left-color: var(--bad); color: var(--ink); }
+.tl-booking.active { outline: 2px solid var(--accent); }
+.tl-b-title { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-b-who { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .8; }
+.tl-now { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--bad); }
+.booking-detail { margin-top: 14px; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: var(--surface-2); }
+.booking-detail p { margin: 8px 0 0; font-size: 14px; }

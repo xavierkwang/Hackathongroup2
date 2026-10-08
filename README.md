@@ -120,6 +120,11 @@ If Graph fails, search still works and availability falls back to leave data alo
   `id,name,email,role,team,projects,owns,skills,floor,desk,zone,slackHandle,slackUserId,accessRole`.
   Separate list values with `;`. `owns` lists the projects this person owns, which drives "who owns X?". `accessRole` is only used in local mode; in AWS, roles come from Cognito groups.
 - **Floor plans:** `frontend/public/floors.json`. Each floor has zones (rectangles) and desks (points) on its own canvas. `scripts/gen_floors.py` generates the demo plans. Desk IDs must match the CSV, and the tests check this.
+- **Meeting rooms (Level 9):** rooms in `backend/src/beacon/data/rooms.json`, bookings in
+  `backend/src/beacon/data/room_bookings.csv` (`bookingId,room,day,start,end,bookedBy,title,attendees`).
+  `day` is a weekday (`Mon`…`Fri`, repeats every week) or an ISO date for a one-off. People in a booked
+  room show as 🟡 *In St John until 4 pm*. Ask the chatbot "who booked St John?" or "any free meeting room?",
+  or open the **Meeting rooms** tab for the day's timeline.
 - **Slack links:** set `VITE_SLACK_TEAM_ID` (or `SLACK_TEAM_ID` when deploying) to open DMs directly in your workspace.
 
 ## Tests

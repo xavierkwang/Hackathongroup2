@@ -5,14 +5,18 @@ const DESK_W = 52
 const DESK_H = 34
 const STATUS_COLOR = { available: 'var(--ok)', busy: 'var(--warn)', on_leave: 'var(--bad)', weekend: 'var(--muted)' }
 
-export default function FloorPlan({ floors, people, selected, onSelect }) {
-  const [floorId, setFloorId] = useState(null)
+export default function FloorPlan({ floors, people, selected, onSelect, rooms = [], selectedRoom, onSelectRoom, initialFloor = null }) {
+  const [floorId, setFloorId] = useState(initialFloor)
   const [hover, setHover] = useState(null)
 
   const target = selected?.person
   useEffect(() => {
     if (target?.floor) setFloorId(target.floor)
   }, [target?.id, target?.floor])
+  useEffect(() => {
+    if (selectedRoom?.floor) setFloorId(selectedRoom.floor)
+  }, [selectedRoom?.id, selectedRoom?.floor])
+  const roomsById = useMemo(() => Object.fromEntries(rooms.map((r) => [r.id, r])), [rooms])
 
   const floor = floors.find((f) => f.id === floorId) || floors[0]
   const byDesk = useMemo(() => {
@@ -23,7 +27,7 @@ export default function FloorPlan({ floors, people, selected, onSelect }) {
 
   if (!floor) return <div className="floor-empty">Loading floor plans…</div>
 
-  const pinDesk = target && target.floor === floor.id ? floor.desks.find((d) => d.id === target.desk) : null
+  const pinDesk = !selectedRoom && target && target.floor === floor.id ? floor.desks.find((d) => d.id === target.desk) : null
   const hoverCard = hover ? byDesk[`${floor.id}/${hover}`] : null
 
   return (
@@ -37,7 +41,11 @@ export default function FloorPlan({ floors, people, selected, onSelect }) {
             </button>
           ))}
         </div>
-        {target ? (
+        {selectedRoom ? (
+          <div className="floor-target">
+            <strong>{selectedRoom.name}</strong> · {selectedRoom.floor} · {selectedRoom.capacity} seats · {selectedRoom.label}
+          </div>
+        ) : target ? (
           <div className="floor-target">
             <strong>{target.name}</strong> · {target.floor} · Desk {target.desk} · {target.zone}
           </div>
@@ -50,7 +58,28 @@ export default function FloorPlan({ floors, people, selected, onSelect }) {
         aria-label={`${floor.name} floor plan${pinDesk ? `, ${target.name} at desk ${target.desk}` : ''}`}>
         <rect x="10" y="10" width={floor.width - 20} height={floor.height - 20} rx="18" className="floor-outline" />
         {floor.zones.map((z) => {
-          const hot = target && target.floor === floor.id && target.zone === z.id
+          if (z.type === 'room') {
+            const room = roomsById[z.roomId]
+            const hot = selectedRoom?.id === z.roomId
+            const color = room?.status === 'occupied' ? 'var(--bad)' : room?.status === 'free' ? 'var(--ok)' : z.color
+            return (
+              <g key={z.id} className="room-zone" onClick={() => onSelectRoom?.(z.roomId)}
+                style={{ cursor: onSelectRoom ? 'pointer' : 'default' }}>
+                <rect x={z.x} y={z.y} width={z.w} height={z.h} rx="12"
+                  fill={color} fillOpacity={hot ? 0.24 : 0.12} stroke={color}
+                  strokeOpacity={hot ? 1 : 0.6} strokeWidth={hot ? 4 : 2} className={hot ? 'zone-hot' : ''} />
+                <foreignObject x={z.x + 10} y={z.y + 10} width={z.w - 20} height={z.h - 20}>
+                  <div xmlns="http://www.w3.org/1999/xhtml" className="room-label">
+                    <div className="room-name">🚪 {z.id}</div>
+                    {room && <div className="room-meta">{room.capacity} seats</div>}
+                    {room && <div className="room-status" style={{ color }}>{room.label}</div>}
+                    {room?.current && <div className="room-meta">“{room.current.title}”</div>}
+                  </div>
+                </foreignObject>
+              </g>
+            )
+          }
+          const hot = !selectedRoom && target && target.floor === floor.id && target.zone === z.id
           return (
             <g key={z.id}>
               <rect x={z.x} y={z.y} width={z.w} height={z.h} rx="12"
@@ -87,6 +116,12 @@ export default function FloorPlan({ floors, people, selected, onSelect }) {
       <div className="floor-foot">
         {hoverCard ? (
           <span><strong>{hoverCard.person.name}</strong> · {hoverCard.person.role} <Badge availability={hoverCard.availability} /></span>
+        ) : floor.zones.some((z) => z.type === 'room') ? (
+          <span className="legend">
+            <i style={{ background: 'var(--ok)' }} /> Room free
+            <i style={{ background: 'var(--bad)' }} /> Room booked now
+            {onSelectRoom && <span className="muted">· click a room for details</span>}
+          </span>
         ) : (
           <span className="legend">
             <i style={{ background: 'var(--ok)' }} /> Available

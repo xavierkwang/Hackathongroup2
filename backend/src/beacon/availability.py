@@ -79,16 +79,29 @@ def availability_for(person: dict, leaves: list[dict], busy: list[tuple[datetime
         return {"status": "weekend", "emoji": "⚪", "label": "Weekend · back Monday",
                 "upcoming": upcoming_out}
 
-    for s, e in busy:
+    # busy items are (start, end) or (start, end, room name) when it's a meeting-room booking
+    for block in busy:
+        s, e = block[0], block[1]
         if s <= now < e:
-            # Merge back-to-back meetings
-            until = e
-            for s2, e2 in busy:
-                if s2 <= until < e2:
-                    until = e2
-            return {"status": "busy", "emoji": "🟡",
-                    "label": f"In a meeting until {until.strftime('%-I:%M %p').lower()}",
-                    "until": until.isoformat(), "upcoming": upcoming_out}
+            # Merge overlapping / back-to-back meetings
+            until, changed = e, True
+            while changed:
+                changed = False
+                for b2 in busy:
+                    if b2[0] <= until < b2[1]:
+                        until, changed = b2[1], True
+            # Name the room if the person is in a booked room right now
+            fmt = lambda t: t.strftime('%-I:%M %p').lower()  # noqa: E731
+            in_room = next((b for b in busy if len(b) > 2 and b[0] <= now < b[1]), None)
+            room = in_room[2] if in_room else None
+            if not room:
+                label = f"In a meeting until {fmt(until)}"
+            elif in_room[1] == until:
+                label = f"In {room} until {fmt(until)}"
+            else:  # leaves the room but has another meeting straight after
+                label = f"In {room} · busy until {fmt(until)}"
+            return {"status": "busy", "emoji": "🟡", "label": label,
+                    "room": room, "until": until.isoformat(), "upcoming": upcoming_out}
 
     note = None
     later_today = [lv for lv in mine if lv["start"] <= today.isoformat() <= lv["end"]
@@ -97,7 +110,7 @@ def availability_for(person: dict, leaves: list[dict], busy: list[tuple[datetime
         note = "On leave this afternoon"
     elif upcoming and (date.fromisoformat(upcoming[0]["start"]) - today).days <= 14:
         note = f"Leave from {_fmt_day(date.fromisoformat(upcoming[0]['start']), today)}"
-    next_busy = next((s for s, _ in busy if s > now and s.date() == today), None)
+    next_busy = min((b[0] for b in busy if b[0] > now and b[0].date() == today), default=None)
     return {"status": "available", "emoji": "🟢", "label": "Available",
             "note": note, "nextBusy": next_busy.isoformat() if next_busy else None,
             "upcoming": upcoming_out}

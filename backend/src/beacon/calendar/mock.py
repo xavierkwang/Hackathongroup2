@@ -5,7 +5,7 @@ import json
 from datetime import datetime, time, timedelta
 from pathlib import Path
 
-from .. import config
+from .. import config, rooms
 
 DATA = Path(__file__).resolve().parent.parent / "data" / "calendar_mock.json"
 
@@ -30,6 +30,9 @@ class MockCalendar:
                 targets = ids if pat["personId"] == "*" else ({pat["personId"]} & ids)
                 for pid in targets:
                     out.setdefault(pid, []).append((s, e))
+            # Meeting-room bookings make the booker and attendees busy too (with the room name)
+            for pid, blocks in rooms.busy_blocks(day, ids).items():
+                out.setdefault(pid, []).extend(b for b in blocks if b[1] > start and b[0] < end)
             day += timedelta(days=1)
         for pid in out:
             out[pid].sort()

@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../api'
 import PersonCard from './PersonCard'
+import RoomCard from './RoomCard'
 
-const SUGGESTIONS = ['FE dev for ACE', 'Who owns Pathfinder?', 'Security person for Sentinel', 'Where does Priya sit?']
+const SUGGESTIONS = ['FE dev for ACE', 'Who owns Pathfinder?', 'Who booked St John?', 'Any free meeting room?', 'Where does Priya sit?']
 
 const WELCOME = {
   role: 'bot',
   text: "Hi! Ask me who to talk to about a project, a role or a team. I'll tell you who it is, where they sit, and whether they're in today.",
 }
 
-export default function ChatSearch({ selectedId, onSelect }) {
+export default function ChatSearch({ selectedId, onSelect, selectedRoomId, onSelectRoom }) {
   const [messages, setMessages] = useState([WELCOME])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
@@ -25,8 +26,9 @@ export default function ChatSearch({ selectedId, onSelect }) {
     setBusy(true)
     try {
       const res = await api('/api/search', { method: 'POST', body: { query: q } })
-      setMessages((m) => [...m, { role: 'bot', text: res.answer, results: res.results, source: res.source, ms: res.ms }])
-      if (res.results[0]) onSelect(res.results[0].person.id)
+      setMessages((m) => [...m, { role: 'bot', text: res.answer, results: res.results, rooms: res.rooms, source: res.source, ms: res.ms }])
+      if (res.rooms?.length) onSelectRoom?.(res.rooms[0].id)
+      else if (res.results[0]) onSelect(res.results[0].person.id)
     } catch (e) {
       setMessages((m) => [...m, { role: 'bot', text: `Sorry, that didn't work: ${e.message}`, error: true }])
     } finally {
@@ -42,10 +44,17 @@ export default function ChatSearch({ selectedId, onSelect }) {
             {m.role === 'bot' && <div className="bot-dot" aria-hidden="true" />}
             <div className="msg-body">
               <p>{m.text}</p>
+              {m.rooms?.length > 0 && (
+                <div className="results">
+                  {m.rooms.map((r) => (
+                    <RoomCard key={r.id} room={r} selected={r.id === selectedRoomId} onSelect={onSelectRoom} />
+                  ))}
+                </div>
+              )}
               {m.results?.length > 0 && <Results results={m.results} selectedId={selectedId} onSelect={onSelect} />}
               {m.source && (
                 <div className="meta">
-                  {m.source === 'ai' ? '✨ Understood by AI' : '⚡ Keyword match'} · {m.ms} ms
+                  {m.source === 'ai' ? '✨ Understood by AI' : m.source === 'rooms' ? '🚪 Room bookings' : '⚡ Keyword match'} · {m.ms} ms
                 </div>
               )}
               {i === 0 && (
@@ -65,7 +74,7 @@ export default function ChatSearch({ selectedId, onSelect }) {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder='e.g. "who developed the MCC platform?"'
+          placeholder='e.g. "who developed MCC?" or "is Kusu free?"'
           aria-label="Ask Beacon"
           maxLength={300}
           autoFocus

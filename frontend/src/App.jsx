@@ -7,10 +7,12 @@ import LeavePage from './components/LeavePage'
 import TeamLeave from './components/TeamLeave'
 import Admin from './components/Admin'
 import Directory from './components/Directory'
+import RoomsPage from './components/RoomsPage'
 
 const TABS = [
   { id: 'ask', label: 'Ask Beacon' },
   { id: 'directory', label: 'Directory' },
+  { id: 'rooms', label: 'Meeting rooms' },
   { id: 'leave', label: 'My leave' },
   { id: 'team', label: 'Team leave', roles: ['lead', 'hr', 'admin'] },
   { id: 'admin', label: 'Admin', roles: ['admin'] },
@@ -22,13 +24,20 @@ export default function App() {
   const [people, setPeople] = useState([])
   const [floors, setFloors] = useState([])
   const [tab, setTab] = useState('ask')
-  const [selectedId, setSelectedId] = useState(null)
+  const [selectedId, setSelectedIdRaw] = useState(null)
+  const [selectedRoomId, setSelectedRoomIdRaw] = useState(null)
+  const [rooms, setRooms] = useState([])
+  // Selecting a person clears the room selection and vice versa
+  const setSelectedId = useCallback((id) => { setSelectedIdRaw(id); setSelectedRoomIdRaw(null) }, [])
+  const setSelectedRoomId = useCallback((id) => { setSelectedRoomIdRaw(id); setSelectedIdRaw(null) }, [])
   const [demoUser, setDemo] = useState(getDemoUser())
 
   const refreshPeople = useCallback(async () => {
     try {
       const data = await api('/api/people')
       setPeople(data.people)
+      const r = await api('/api/rooms')
+      setRooms(r.rooms)
     } catch { /* shown elsewhere */ }
   }, [])
 
@@ -66,6 +75,7 @@ export default function App() {
   const roles = me?.roles || []
   const visibleTabs = TABS.filter((t) => !t.roles || t.roles.some((r) => roles.includes(r)))
   const selected = people.find((c) => c.person.id === selectedId)
+  const selectedRoom = rooms.find((r) => r.id === selectedRoomId)
 
   const switchDemo = (email) => {
     setDemoUser(email)
@@ -118,14 +128,17 @@ export default function App() {
       <main className="main">
         {/* Kept mounted so the conversation survives switching tabs */}
         <div className="ask-layout" hidden={tab !== 'ask'}>
-          <ChatSearch key={demoUser} selectedId={selectedId} onSelect={setSelectedId} />
+          <ChatSearch key={demoUser} selectedId={selectedId} onSelect={setSelectedId}
+            selectedRoomId={selectedRoomId} onSelectRoom={setSelectedRoomId} />
           <aside className="map-panel">
-            <FloorPlan floors={floors} people={people} selected={selected} onSelect={setSelectedId} />
+            <FloorPlan floors={floors} people={people} selected={selected} onSelect={setSelectedId}
+              rooms={rooms} selectedRoom={selectedRoom} onSelectRoom={setSelectedRoomId} />
           </aside>
         </div>
         {tab === 'directory' && (
           <Directory people={people} onShow={(id) => { setSelectedId(id); setTab('ask') }} />
         )}
+        {tab === 'rooms' && <RoomsPage floors={floors} people={people} />}
         {tab === 'leave' && <LeavePage me={me} onSaved={refreshPeople} />}
         {tab === 'team' && <TeamLeave me={me} onSaved={refreshPeople} />}
         {tab === 'admin' && <Admin onSaved={refreshPeople} />}

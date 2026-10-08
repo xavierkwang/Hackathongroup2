@@ -1,0 +1,41 @@
+bookingId,room,day,start,end,bookedBy,title,attendees
+b001,st-john,Mon,09:00,10:00,p012,Platform weekly sync,p006;p007;p011;p015;p019;p023
+b002,st-john,Mon,14:00,15:30,p003,Beacon sprint planning,p017;p022;p016
+b003,lazarus,Mon,10:00,11:00,p004,ACE architecture review,p001;p002;p010
+b004,lazarus,Mon,15:00,16:00,p021,Pathfinder demo prep,p008;p014;p020
+b005,seringat,Mon,11:00,12:00,p013,New joiner onboarding,p024
+b006,seringat,Mon,16:00,17:00,p005,UX research readout,p003;p018
+b007,kusu,Mon,13:00,13:30,p009,1:1 with Victor,p021
+b008,kusu,Mon,17:00,17:30,p015,Vendor call,
+b009,st-john,Tue,10:00,12:00,p018,ACE sprint review,p001;p002;p004;p010;p005
+b010,st-john,Tue,15:00,16:30,p015,Sentinel design review,p011;p019;p023
+b011,lazarus,Tue,09:30,10:30,p012,MCC incident retro,p006;p011
+b012,lazarus,Tue,14:00,15:00,p016,Requirements workshop,p008;p022
+b013,seringat,Tue,11:00,11:30,p017,Mobile release go/no-go,p003
+b014,seringat,Tue,16:00,17:30,p020,Dashboard pairing,p014
+b015,kusu,Tue,12:30,13:00,p024,Seating plan review,p013
+b016,kusu,Tue,15:30,16:00,p007,Interview: FE candidate,p006
+b017,st-john,Wed,09:00,10:30,p021,Insights all-hands,p008;p009;p014;p016;p020;p022
+b018,st-john,Wed,14:00,16:00,p004,ACE quarterly planning,p003;p018;p005
+b019,lazarus,Wed,11:00,12:00,p019,Cloud cost review,p015;p006
+b020,lazarus,Wed,16:00,17:00,p022,LLM evaluation,p009
+b021,seringat,Wed,10:00,11:00,p011,Security threat model,p001;p015
+b022,seringat,Wed,13:30,14:30,p013,Leave policy Q&A,
+b023,kusu,Wed,12:00,12:30,p002,API design chat,p014
+b024,kusu,Wed,17:00,18:00,p023,Network change window,
+b025,st-john,Thu,10:00,11:30,p012,MCC roadmap,p006;p007;p011;p005
+b026,st-john,Thu,14:30,16:00,p003,Beacon hackathon dry run,p017;p022;p016;p013
+b027,lazarus,Thu,09:30,10:30,p004,ACE standup and triage,p001;p010;p018
+b028,lazarus,Thu,15:00,16:30,p021,Pathfinder stakeholder demo,p008;p009;p020
+b029,seringat,Thu,11:00,12:00,p015,Sentinel vendor workshop,p019;p023
+b030,seringat,Thu,16:30,17:30,p005,Design crit,p007
+b031,kusu,Thu,13:00,13:30,p014,1:1 with Victor,p021
+b032,kusu,Thu,17:30,18:00,p024,Facilities check-in,
+b033,st-john,Fri,09:00,10:00,p013,Town hall rehearsal,p024;p012
+b034,st-john,Fri,15:00,17:00,p021,Friday demos,p004;p012;p003
+b035,lazarus,Fri,10:30,11:30,p010,Test strategy review,p001;p004
+b036,lazarus,Fri,14:00,15:00,p006,On-call handover,p019
+b037,seringat,Fri,11:00,12:00,p016,Qlik dashboard walkthrough,p009
+b038,seringat,Fri,16:00,17:00,p018,Sprint retro,p001;p002;p010
+b039,kusu,Fri,12:30,13:00,p017,App store review,
+b040,kusu,Fri,13:30,14:00,p020,Chart library spike,p022

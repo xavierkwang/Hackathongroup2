@@ -43,6 +43,20 @@ floors = [
         "desks": desk_grid("6-A", "Platform Zone", 90, 130, 5, 2)
         + desk_grid("6-B", "Insights Zone", 570, 130, 5, 2),
     },
+    {
+        # Meeting-room floor. Room zones have type "room" and a roomId matching
+        # backend/src/beacon/data/rooms.json; the app colours them free / occupied.
+        "id": "L9", "name": "Level 9", "width": 1000, "height": 600,
+        "zones": [
+            {"id": "St John", "x": 40, "y": 60, "w": 380, "h": 250, "color": "#2f6fed", "type": "room", "roomId": "st-john"},
+            {"id": "Lazarus", "x": 440, "y": 60, "w": 260, "h": 250, "color": "#2f6fed", "type": "room", "roomId": "lazarus"},
+            {"id": "Seringat", "x": 720, "y": 60, "w": 240, "h": 250, "color": "#2f6fed", "type": "room", "roomId": "seringat"},
+            {"id": "Kusu", "x": 40, "y": 350, "w": 200, "h": 210, "color": "#2f6fed", "type": "room", "roomId": "kusu"},
+            {"id": "Reception", "x": 260, "y": 350, "w": 300, "h": 210, "color": "#8a8f98", "amenity": True},
+            {"id": "Pantry", "x": 580, "y": 350, "w": 380, "h": 210, "color": "#8a8f98", "amenity": True},
+        ],
+        "desks": [],
+    },
 ]
 
 out = Path(__file__).resolve().parent.parent / "frontend" / "public" / "floors.json"

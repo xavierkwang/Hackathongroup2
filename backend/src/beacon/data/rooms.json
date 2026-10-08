@@ -1,0 +1,9 @@
+{
+  "_comment": "Meeting rooms. `zone` must match a zone id on the floor plan (frontend/public/floors.json).",
+  "rooms": [
+    {"id": "st-john",  "name": "St John",  "floor": "L9", "zone": "St John",  "capacity": 12, "equipment": ["Video conferencing", "Whiteboard", "Dual screens"], "aliases": ["st john", "st. john", "saint john", "stjohn"]},
+    {"id": "lazarus",  "name": "Lazarus",  "floor": "L9", "zone": "Lazarus",  "capacity": 8,  "equipment": ["TV screen", "Whiteboard"], "aliases": ["lazarus"]},
+    {"id": "seringat", "name": "Seringat", "floor": "L9", "zone": "Seringat", "capacity": 6,  "equipment": ["TV screen"], "aliases": ["seringat"]},
+    {"id": "kusu",     "name": "Kusu",     "floor": "L9", "zone": "Kusu",     "capacity": 4,  "equipment": ["Phone conferencing"], "aliases": ["kusu"]}
+  ]
+}

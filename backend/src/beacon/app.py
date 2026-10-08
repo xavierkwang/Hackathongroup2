@@ -9,7 +9,7 @@ import re
 import time
 from datetime import date
 
-from . import auth, config, search as search_mod
+from . import auth, config, rooms as rooms_mod, search as search_mod
 from .availability import annotate
 from .leave_parser import parse_leave, working_days
 from .store import get_store, new_leave, parse_people_csv
@@ -123,6 +123,16 @@ def r_search(event, caller):
         raise BadRequest("query is required")
     store = get_store()
     people = store.list_people()
+
+    # Meeting-room questions ("who booked St John?", "any free room?")
+    room_hit = rooms_mod.answer(query, people)
+    if room_hit:
+        by_id = {p["id"]: p for p in people}
+        cards = _with_availability([by_id[i] for i in dict.fromkeys(room_hit["personIds"]) if i in by_id], store)
+        ms = round((time.perf_counter() - t0) * 1000)
+        return {"query": query, "source": "rooms", "filters": {}, "answer": room_hit["answer"],
+                "rooms": room_hit["rooms"], "results": cards, "ms": ms}
+
     result = search_mod.search(query, people)
     cards = _with_availability([r["person"] for r in result["results"]], store)
     for card, r in zip(cards, result["results"]):
@@ -159,6 +169,19 @@ def r_teams(event, caller):
         teams.setdefault(p.get("team") or "—", []).append({"id": p["id"], "name": p["name"]})
     return {"teams": [{"team": t, "members": sorted(m, key=lambda x: x["name"])}
                       for t, m in sorted(teams.items())]}
+
+
+def r_rooms(event, caller):
+    qs = event.get("queryStringParameters") or {}
+    day = None
+    if qs.get("date"):
+        try:
+            day = date.fromisoformat(qs["date"])
+        except ValueError as exc:
+            raise BadRequest("date must be YYYY-MM-DD") from exc
+    now = config.now()
+    return {"date": (day or now.date()).isoformat(), "now": now.isoformat(),
+            "rooms": rooms_mod.room_status(get_store().list_people(), day, now)}
 
 
 def r_leave_parse(event, caller):
@@ -257,6 +280,7 @@ ROUTES = [
     ("GET", r"/api/people", r_people, True),
     ("GET", r"/api/people/([\w-]+)", r_person, True),
     ("GET", r"/api/teams", r_teams, True),
+    ("GET", r"/api/rooms", r_rooms, True),
     ("POST", r"/api/leave/parse", r_leave_parse, True),
     ("GET", r"/api/leave", r_leave_list, True),
     ("POST", r"/api/leave", r_leave_create, True),
