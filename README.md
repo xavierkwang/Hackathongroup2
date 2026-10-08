@@ -12,6 +12,12 @@ People keep their own leave current by typing it in plain language ("MC today", 
 
 ---
 
+## Run it in your browser (GitHub Codespaces, nothing to install)
+
+1. On the repo page, click **Code → Codespaces → Create codespace on main**.
+2. Wait 2–3 minutes for setup. The app starts by itself and opens in a new tab.
+   If it doesn't, open the **Ports** tab and click the 🌐 globe next to port **5173**.
+
 ## Quick start (local, no AWS needed)
 
 ```bash

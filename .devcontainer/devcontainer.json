@@ -1,0 +1,14 @@
+{
+  "name": "WOW Beacon",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" }
+  },
+  "postCreateCommand": "pip install -r backend/requirements-dev.txt && cd frontend && npm install",
+  "postAttachCommand": "./scripts/dev.sh",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": { "label": "WOW Beacon", "onAutoForward": "openBrowser" },
+    "8787": { "label": "API", "onAutoForward": "silent" }
+  }
+}
