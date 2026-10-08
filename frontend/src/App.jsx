@@ -6,9 +6,11 @@ import FloorPlan from './components/FloorPlan'
 import LeavePage from './components/LeavePage'
 import TeamLeave from './components/TeamLeave'
 import Admin from './components/Admin'
+import Directory from './components/Directory'
 
 const TABS = [
   { id: 'ask', label: 'Ask Beacon' },
+  { id: 'directory', label: 'Directory' },
   { id: 'leave', label: 'My leave' },
   { id: 'team', label: 'Team leave', roles: ['lead', 'hr', 'admin'] },
   { id: 'admin', label: 'Admin', roles: ['admin'] },
@@ -121,6 +123,9 @@ export default function App() {
             <FloorPlan floors={floors} people={people} selected={selected} onSelect={setSelectedId} />
           </aside>
         </div>
+        {tab === 'directory' && (
+          <Directory people={people} onShow={(id) => { setSelectedId(id); setTab('ask') }} />
+        )}
         {tab === 'leave' && <LeavePage me={me} onSaved={refreshPeople} />}
         {tab === 'team' && <TeamLeave me={me} onSaved={refreshPeople} />}
         {tab === 'admin' && <Admin onSaved={refreshPeople} />}
