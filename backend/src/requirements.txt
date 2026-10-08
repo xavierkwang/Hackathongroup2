@@ -1,0 +1,2 @@
+# boto3/botocore come with the Lambda runtime.
+tzdata>=2024.1

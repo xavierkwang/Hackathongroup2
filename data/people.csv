@@ -1,0 +1,25 @@
+id,name,email,role,team,projects,owns,skills,floor,desk,zone,slackHandle,slackUserId,accessRole
+p001,Aisha Rahman,aisha.rahman@example.com,Frontend Developer,Atlas,ACE,,react;typescript;css,L5,5-A-01,Atlas Zone,@aisha,U0AISHA01,
+p002,Benjamin Tan,benjamin.tan@example.com,Backend Developer,Atlas,ACE,,python;aws;api,L5,5-A-02,Atlas Zone,@benjamin,U0BENJ002,
+p003,Chloe Lim,chloe.lim@example.com,Product Manager,Atlas,ACE;Beacon,Beacon,roadmap;stakeholders,L5,5-A-03,Atlas Zone,@chloe,U0CHLOE03,
+p004,Daniel Ong,daniel.ong@example.com,Tech Lead,Atlas,ACE,ACE,architecture;java;aws,L5,5-A-04,Atlas Zone,@daniel,U0DANIE04,lead
+p005,Farah Ismail,farah.ismail@example.com,UX Designer,Design Guild,ACE;MCC,,figma;research;accessibility,L5,5-C-01,Design Studio,@farah,U0FARAH05,
+p006,Gavin Ng,gavin.ng@example.com,DevOps Engineer,Platform,MCC,,kubernetes;terraform;ci/cd,L6,6-A-01,Platform Zone,@gavin,U0GAVIN06,
+p007,Hui Min Goh,huimin.goh@example.com,Frontend Developer,Platform,MCC,,angular;typescript,L6,6-A-02,Platform Zone,@huimin,U0HUIMI07,
+p008,Ishaan Menon,ishaan.menon@example.com,Data Engineer,Insights,Pathfinder,,spark;sql;airflow,L6,6-B-01,Insights Zone,@ishaan,U0ISHAA08,
+p009,Jasmine Koh,jasmine.koh@example.com,Data Scientist,Insights,Pathfinder,,python;ml;statistics,L6,6-B-02,Insights Zone,@jasmine,U0JASMI09,
+p010,Kelvin Chua,kelvin.chua@example.com,QA Engineer,Atlas,ACE,,playwright;test automation,L5,5-A-05,Atlas Zone,@kelvin,U0KELVI10,
+p011,Li Wei Teo,liwei.teo@example.com,Security Engineer,Platform,MCC;Sentinel,,iam;pentest;compliance,L6,6-A-03,Platform Zone,@liwei,U0LIWEI11,
+p012,Marcus Lee,marcus.lee@example.com,Engineering Manager,Platform,MCC,MCC,delivery;people management,L6,6-A-04,Platform Zone,@marcus,U0MARCU12,lead
+p013,Nadia Yusof,nadia.yusof@example.com,HR Business Partner,People Ops,,,onboarding;leave policy,L5,5-D-01,People Ops,@nadia,U0NADIA13,hr
+p014,Owen Sim,owen.sim@example.com,Backend Developer,Insights,Pathfinder,,python;fastapi;postgres,L6,6-B-03,Insights Zone,@owen,U0OWENS14,
+p015,Priya Nair,priya.nair@example.com,Solutions Architect,Platform,Sentinel,Sentinel,aws;networking;architecture,L6,6-A-05,Platform Zone,@priya,U0PRIYA15,
+p016,Qistina Hamid,qistina.hamid@example.com,Business Analyst,Insights,Pathfinder;Beacon,,requirements;qlik;sql,L6,6-B-04,Insights Zone,@qistina,U0QISTI16,
+p017,Ryan Foo,ryan.foo@example.com,Mobile Developer,Atlas,Beacon,,react native;ios;android,L5,5-A-06,Atlas Zone,@ryan,U0RYANF17,
+p018,Sarah Wong,sarah.wong@example.com,Scrum Master,Atlas,ACE,,agile;jira;facilitation,L5,5-A-07,Atlas Zone,@sarah,U0SARAH18,
+p019,Terence Yeo,terence.yeo@example.com,Cloud Engineer,Platform,Sentinel,,aws;lambda;dynamodb,L6,6-A-06,Platform Zone,@terence,U0TEREN19,
+p020,Umairah Said,umairah.said@example.com,Frontend Developer,Insights,Pathfinder,,react;d3;charts,L6,6-B-05,Insights Zone,@umairah,U0UMAIR20,
+p021,Victor Low,victor.low@example.com,Tech Lead,Insights,Pathfinder,Pathfinder,data platform;python,L6,6-B-06,Insights Zone,@victor,U0VICTO21,lead
+p022,Wen Jie Ho,wenjie.ho@example.com,ML Engineer,Insights,Beacon,,llm;bedrock;nlp,L6,6-B-07,Insights Zone,@wenjie,U0WENJI22,
+p023,Xavier Pang,xavier.pang@example.com,Network Engineer,Platform,Sentinel,,firewalls;vpn;networking,L6,6-A-07,Platform Zone,@xavier,U0XAVIE23,
+p024,Yvonne Tay,yvonne.tay@example.com,Workplace Admin,People Ops,,,seating;facilities,L5,5-D-02,People Ops,@yvonne,U0YVONN24,admin

@@ -1,0 +1,328 @@
+{
+  "floors": [
+    {
+      "id": "L5",
+      "name": "Level 5",
+      "width": 1000,
+      "height": 600,
+      "zones": [
+        {
+          "id": "Atlas Zone",
+          "x": 40,
+          "y": 60,
+          "w": 440,
+          "h": 250,
+          "color": "#2f6fed"
+        },
+        {
+          "id": "Design Studio",
+          "x": 520,
+          "y": 60,
+          "w": 230,
+          "h": 250,
+          "color": "#b04ad6"
+        },
+        {
+          "id": "People Ops",
+          "x": 780,
+          "y": 60,
+          "w": 180,
+          "h": 250,
+          "color": "#e0752d"
+        },
+        {
+          "id": "Collab Hub",
+          "x": 40,
+          "y": 350,
+          "w": 440,
+          "h": 210,
+          "color": "#1f9d74",
+          "amenity": true
+        },
+        {
+          "id": "Pantry",
+          "x": 520,
+          "y": 350,
+          "w": 440,
+          "h": 210,
+          "color": "#8a8f98",
+          "amenity": true
+        }
+      ],
+      "desks": [
+        {
+          "id": "5-A-01",
+          "x": 90,
+          "y": 130,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-02",
+          "x": 168,
+          "y": 130,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-03",
+          "x": 246,
+          "y": 130,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-04",
+          "x": 324,
+          "y": 130,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-05",
+          "x": 402,
+          "y": 130,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-06",
+          "x": 90,
+          "y": 220,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-07",
+          "x": 168,
+          "y": 220,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-08",
+          "x": 246,
+          "y": 220,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-09",
+          "x": 324,
+          "y": 220,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-A-10",
+          "x": 402,
+          "y": 220,
+          "zone": "Atlas Zone"
+        },
+        {
+          "id": "5-C-01",
+          "x": 580,
+          "y": 130,
+          "zone": "Design Studio"
+        },
+        {
+          "id": "5-C-02",
+          "x": 690,
+          "y": 130,
+          "zone": "Design Studio"
+        },
+        {
+          "id": "5-C-03",
+          "x": 580,
+          "y": 220,
+          "zone": "Design Studio"
+        },
+        {
+          "id": "5-C-04",
+          "x": 690,
+          "y": 220,
+          "zone": "Design Studio"
+        },
+        {
+          "id": "5-D-01",
+          "x": 830,
+          "y": 130,
+          "zone": "People Ops"
+        },
+        {
+          "id": "5-D-02",
+          "x": 910,
+          "y": 130,
+          "zone": "People Ops"
+        },
+        {
+          "id": "5-D-03",
+          "x": 830,
+          "y": 220,
+          "zone": "People Ops"
+        },
+        {
+          "id": "5-D-04",
+          "x": 910,
+          "y": 220,
+          "zone": "People Ops"
+        }
+      ]
+    },
+    {
+      "id": "L6",
+      "name": "Level 6",
+      "width": 1000,
+      "height": 600,
+      "zones": [
+        {
+          "id": "Platform Zone",
+          "x": 40,
+          "y": 60,
+          "w": 440,
+          "h": 250,
+          "color": "#2f6fed"
+        },
+        {
+          "id": "Insights Zone",
+          "x": 520,
+          "y": 60,
+          "w": 440,
+          "h": 250,
+          "color": "#1f9d74"
+        },
+        {
+          "id": "War Room",
+          "x": 40,
+          "y": 350,
+          "w": 300,
+          "h": 210,
+          "color": "#c43b3b",
+          "amenity": true
+        },
+        {
+          "id": "Quiet Pods",
+          "x": 380,
+          "y": 350,
+          "w": 580,
+          "h": 210,
+          "color": "#8a8f98",
+          "amenity": true
+        }
+      ],
+      "desks": [
+        {
+          "id": "6-A-01",
+          "x": 90,
+          "y": 130,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-02",
+          "x": 168,
+          "y": 130,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-03",
+          "x": 246,
+          "y": 130,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-04",
+          "x": 324,
+          "y": 130,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-05",
+          "x": 402,
+          "y": 130,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-06",
+          "x": 90,
+          "y": 220,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-07",
+          "x": 168,
+          "y": 220,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-08",
+          "x": 246,
+          "y": 220,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-09",
+          "x": 324,
+          "y": 220,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-A-10",
+          "x": 402,
+          "y": 220,
+          "zone": "Platform Zone"
+        },
+        {
+          "id": "6-B-01",
+          "x": 570,
+          "y": 130,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-02",
+          "x": 648,
+          "y": 130,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-03",
+          "x": 726,
+          "y": 130,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-04",
+          "x": 804,
+          "y": 130,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-05",
+          "x": 882,
+          "y": 130,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-06",
+          "x": 570,
+          "y": 220,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-07",
+          "x": 648,
+          "y": 220,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-08",
+          "x": 726,
+          "y": 220,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-09",
+          "x": 804,
+          "y": 220,
+          "zone": "Insights Zone"
+        },
+        {
+          "id": "6-B-10",
+          "x": 882,
+          "y": 220,
+          "zone": "Insights Zone"
+        }
+      ]
+    }
+  ]
+}

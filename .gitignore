@@ -1,0 +1,11 @@
+node_modules/
+frontend/dist/
+frontend/.env.production
+frontend/.env.local
+.local/
+.aws-sam/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.DS_Store

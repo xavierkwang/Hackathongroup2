@@ -1,0 +1,1 @@
+"""WOW Beacon backend."""

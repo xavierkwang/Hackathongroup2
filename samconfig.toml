@@ -1,0 +1,12 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "wow-beacon"
+
+[default.deploy.parameters]
+region = "ap-southeast-1"
+capabilities = "CAPABILITY_IAM"
+resolve_s3 = true
+confirm_changeset = false
+# Change CognitoDomainPrefix to something globally unique before your first deploy.
+parameter_overrides = "StageName=\"demo\" CognitoDomainPrefix=\"wow-beacon-change-me\" AiEnabled=\"on\" CalendarProvider=\"mock\""
